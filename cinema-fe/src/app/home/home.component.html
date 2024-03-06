@@ -1,0 +1,84 @@
+<style>
+    .clickable-card {
+      width: 200px;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #f8f9fc;
+      transition: all 0.3s ease;
+      border: 2px solid #dee2e6;
+      cursor: pointer;
+    }
+
+    .clickable-card:hover {
+      transform: translateY(-2px);
+      background-color: #e2e6ea;
+    }
+
+    .clickable-card-content {
+      text-align: center;
+    }
+
+    .clickable-card-icon {
+      font-size: 36px;
+      color: #007bff;
+    }
+
+    .card-start{
+        padding-bottom: 10px;
+    }
+  </style>
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+
+      <div class="card-start col-12 ">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">USERNAME</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.username }}</div>
+          </div>
+          <div class="card-body">
+            <i class="fas fa-user fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-start col-12">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ROLE</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.role }}</div>
+          </div>
+          <div class="card-body">
+            <i class="fas fa-lock fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <hr>
+  
+    <div class="row justify-content-center">
+
+      <div class="col-md-4 mb-4" (click)="onMoviesClick()">
+        <div class="clickable-card">
+          <div class="clickable-card-content">
+            <i class="clickable-card-icon fas fa-film"></i>
+            <p>MOVIES</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4" (click)="onLogout($event)" >
+        <div class="clickable-card" >
+          <div class="clickable-card-content">
+            <i class="clickable-card-icon fa-solid fa-right-from-bracket"></i>
+            <p>LOGOUT</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>

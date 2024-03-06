@@ -1,0 +1,11 @@
+.clickable-card {
+  cursor: pointer; /* Cambia il cursore del mouse quando si passa sopra alla card */
+  border: 1px Solid;
+  border-color: rgb(162, 162, 162);
+  border-radius: 10px;
+}
+
+.clickable-card:hover {
+  background-color: #88909b; /* Aggiunge un'ombra quando si passa sopra alla card */
+  color: rgb(255, 255, 255);
+}

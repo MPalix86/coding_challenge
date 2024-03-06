@@ -1,0 +1,81 @@
+
+
+<div class="container ">
+  <button (click)="goBack()"style=" color:white; background-color: darkgoldenrod;border:none;" type="button" class="btn btn-light">
+    <i class="fas fa-arrow-left"></i> Indietro
+  </button>
+  
+  <br>
+  <br>
+  <div class="card " style="background-image: url('{{showTime?.schedule?.film?.imageLink}}'); background-size: cover;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+          <img style="padding: 10px; border-radius: 10px;" src="{{showTime?.schedule?.film?.imageLink}}" class="card-img-top shadow-lg" alt="{{ showTime?.schedule?.film?.name }}">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body" style="background-color: rgba(0, 0, 0, 0.843);">
+          <div class="card-text">
+            <div class="container mt-auto">
+              <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                          <p class="card-text">Inizio</p>
+                          <h5 class="card-title">{{ showTime.startTime | slice:0:5 }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                          <p class="card-text">Posti Liberi</p>
+                          <h5 class="card-title">{{ getFreeSeats() }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                          <h5 class="card-title">Prezzo</h5>
+                          <p class="mb-1"> {{ showTime.schedule?.theater?.price ?? 'Unknown' }} €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <p class="mb-1"><span class="badge bg-primary"><i class="fas fa-info-circle"></i></span> <strong> Descrizione: </strong> {{ showTime.schedule?.film?.description ?? 'No Description' }}</p>
+                      <p class="mb-1"><span class="badge bg-success"><i class="fas fa-calendar-alt"></i></span> <strong> Uscita </strong> {{ showTime.schedule?.film?.releaseDate ?? 'Unknown' }}</p>
+                      <p class="mb-1"><span class="badge bg-warning"><i class="fas fa-clock"></i></span> <strong> Durata: </strong> {{ showTime.schedule?.film?.minutes ?? 'Unknown' }} minuti</p>
+                      <p class="mb-1"><span class="badge bg-info"><i class="fas fa-theater-masks"></i></span> <strong>Sala: </strong> {{ showTime.schedule?.theater?.name  ?? 'Unknown' }} ({{ showTime.schedule?.theater?.technology ?? 'Unknown' }})</p>
+                      <!-- <p class="mb-1"><span class="badge bg-dark"><i class="fas fa-clock"></i></span> <strong> Start Time: </strong> {{ showTime.startTime }}</p> -->
+                      <p class="mb-1"><span class="badge bg-dark"><i class="fas fa-clock"></i></span> <strong> Fine : </strong> {{ showTime.endTime | slice:0:5 }}</p>
+                      <!-- <p class="mb-1"><span class="badge bg-secondary"><i class="fas fa-chair"></i></span> <strong> Occupied Seats: </strong> {{ showTime.occupiedSeats }}</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <button style="background-color: darkgoldenrod;border:none;"type="button" class="btn btn-primary">Compra il biglietto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

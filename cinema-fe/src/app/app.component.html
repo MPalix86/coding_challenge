@@ -1,0 +1,13 @@
+<!-- app.component.html -->
+<body id="page-top">
+  <div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <app-top-bar *ngIf="shouldShowTopBar()"></app-top-bar>
+        <div class="row">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,111 @@
+<style>
+
+</style>
+<div class="container-fluid">
+  <div class="row">
+    
+
+    @if(!isLoading){
+      <div class="card">
+        <div class="card-body">
+          <!-- Input per la data -->
+          <div class="input-group mb-3">
+            <input type="date" class="form-control" name="dateFilter" [(ngModel)]="filteredDate" [ngClass]="calendarClasses" class="form-control ">
+            <button class="btn btn-outline-secondary" type="button" (click)="filterMoviesByDate()">Filter</button>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="col-md-12">
+      
+  
+        <!-- Contenuto principale con i film -->
+        <div class="row">
+          <div class="col" id="filmList">
+  
+            @for(s of schedules ; track s.id){
+              <div class="card mb-3">
+                
+                <div class="card-body">
+                    <img src="{{s.film.imageLink}}" class="img-fluid float-right" alt="Locandina del film" style="max-width: 100px;">
+                    <div class="row">
+                      <div class="col d-flex align-items-center">
+                        <h4 class="card-title me-3">
+                          <strong>
+                            {{ s.film.name }}
+                          </strong>
+                        </h4>
+
+                        @if(s.theater.technology == 'IMAX'){
+                          <p class="mb-1"><span class="badge bg-primary"> {{ s.theater.technology }}</span> </p>
+                         }
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2"><strong><i class="fa-regular fa-clock"></i>: </strong> {{ getHourMinutesFromNumber(s.film.minutes) }} ore</h6>
+                      </div>
+                      <div class="col">
+                        <h6 class="card-text"><strong><i class="fa-solid fa-euro-sign"></i>: </strong> {{ s.theater.price }} </h6>
+                      </div>
+                      <div class="col">
+                        <h5 class="card-text"> <strong> {{ s.theater.name }}</strong></h5>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col">
+                        <p class="card-text text-muted">{{ s.film.description }}</p>
+                      </div>
+                    </div>
+                  
+                  <hr class="border-primary">
+                  <h6 class="ext-muted card-text"><strong>Programmazione del </strong>  {{filteredDate | date: 'EEEE, d'}}</h6>
+                  <br>
+                  <div class="row">
+                    
+                     
+                      @for(st of s.showTimes; track st.id){
+                        <div class="col-md-2 mb-2">
+                          <div class="clickable-card d-flex align-items-center position-relative">
+                            <div (click)="goToDetails(st.id)" class="card-body text-center">
+                              <span   [ngStyle]="{ 'background-color': getSeatsColor(  st.occupiedSeats, s.theater.capacity) }" title="Posti disponibili" style="border-radius: 0px 9px ;"class="position-absolute top-0 end-0  text-white p-1">{{s.theater.capacity - st.occupiedSeats}}</span>
+                              <h5 class="card-title" style="margin-bottom: 0px;">{{ st.startTime | slice:0:5 }}</h5>
+                              <!-- Altri dettagli dell'orario -->
+                            </div>
+                          </div>
+                        </div>
+                      }
+                  </div>
+                </div>
+              </div>
+              <!-- Collapsable -->
+            }
+          </div>
+        </div>
+      </div>
+  
+
+    }
+
+  
+    
+
+
+
+  
+    @if(isLoading){
+      <div class="d-flex justify-content-center align-items-center" *ngIf="isLoading">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <br>
+      <br>
+    }
+  </div>
+</div>
